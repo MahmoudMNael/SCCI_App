@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@drawable/stars"
+	android:clickable="true"
+	android:focusable="true"
+	android:focusableInTouchMode="true"
+	tools:context=".AuthScreen">
+	
+	
+	
+	<ImageView
+		android:id="@+id/sccilogoimage"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:contentDescription="SCCI Logo"
+		app:layout_constraintBottom_toTopOf="@+id/authcard"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:srcCompat="@drawable/scci_logo" />
+	
+	<com.google.android.material.card.MaterialCardView
+		android:id="@+id/authcard"
+		style="@style/AuthCard.SCCIApp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:cardElevation="0dp"
+		app:contentPadding="16dp"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent">
+		
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_marginBottom="90dp">
+			
+			<com.google.android.material.textfield.TextInputLayout
+				android:id="@+id/emailtextlayout"
+				style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+				android:layout_width="match_parent"
+				android:layout_height="60dp"
+				app:errorEnabled="true"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent"
+				app:startIconDrawable="@drawable/ic_mail_24">
+				
+				<EditText
+					android:id="@+id/emailtextinput"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:hint="Email"
+					android:inputType="textEmailAddress" />
+			</com.google.android.material.textfield.TextInputLayout>
+			
+			<com.google.android.material.textfield.TextInputLayout
+				android:id="@+id/passwordtextlayout"
+				style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+				android:layout_width="match_parent"
+				android:layout_height="60dp"
+				android:layout_marginTop="16dp"
+				app:endIconMode="password_toggle"
+				app:errorEnabled="true"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/emailtextlayout"
+				app:startIconDrawable="@drawable/ic_lock_24">
+				
+				<EditText
+					android:id="@+id/passwordtextinput"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:hint="Password"
+					android:inputType="textPassword" />
+			</com.google.android.material.textfield.TextInputLayout>
+			
+			<Button
+				android:id="@+id/loginbtn"
+				style="@style/Widget.Material3.Button.ElevatedButton"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="16dp"
+				android:text="Login"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				android:visibility="visible"
+				app:layout_constraintTop_toBottomOf="@+id/passwordtextlayout" />
+			
+			<ProgressBar
+				android:id="@+id/progresscircular"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				android:layout_marginTop="16dp"
+				android:visibility="gone"
+				app:layout_constraintTop_toBottomOf="@+id/passwordtextlayout"
+				/>
+		
+		
+		</androidx.constraintlayout.widget.ConstraintLayout>
+	
+	</com.google.android.material.card.MaterialCardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
