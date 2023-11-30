@@ -1,11 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 	<!-- Base application theme. -->
-	<style name="Base.Theme.SCCIApp" parent="Theme.Material3.DayNight.NoActionBar">
+	<style name="Base.Theme.SCCIApp" parent="Theme.Material3.Light.NoActionBar">
 		<!-- Customize your light theme here. -->
 		<item name="colorPrimary">@color/Primary</item>
 		<item name="colorSecondary">@color/Secondary</item>
 		<item name="colorTertiary">@color/Tertiary</item>
-		<item name="android:windowTranslucentStatus">true</item>
+<!--		<item name="android:windowTranslucentStatus">true</item>-->
+		<item name="android:statusBarColor">#00FFFFFF</item>
 	</style>
 	
 	<style name="AuthCard.SCCIApp" parent="@style/Widget.Material3.CardView.Elevated">
@@ -18,6 +19,10 @@
 		<item name="cornerSizeTopLeft">24dp</item>
 		<item name="cornerSizeBottomRight">0dp</item>
 		<item name="cornerSizeBottomLeft">0dp</item>
+	</style>
+	
+	<style name="Custom.Indicator.SCCIApp" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+		<item name="android:color">@color/Primary</item>
 	</style>
 	
 	<style name="Theme.SCCIApp" parent="Base.Theme.SCCIApp" />

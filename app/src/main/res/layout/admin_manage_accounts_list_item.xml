@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:layout_margin="8dp"
+	android:minHeight="160dp"
+	app:cardElevation="10dp">
+	
+	
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:minHeight="160dp">
+		
+		
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:id="@+id/titlecontainer"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintVertical_bias="0.15">
+			
+			<ImageView
+				android:id="@+id/profilepic"
+				android:layout_width="70dp"
+				android:layout_height="70dp"
+				android:contentDescription="ProfilePic"
+				android:src="@drawable/scci_logo"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintHorizontal_bias="0.06"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent" />
+			
+			<TextView
+				android:id="@+id/fullname"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Full Name"
+				android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+				app:layout_constraintBottom_toBottomOf="@+id/profilepic"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintHorizontal_bias="0.1"
+				app:layout_constraintStart_toEndOf="@+id/profilepic"
+				app:layout_constraintTop_toTopOf="@+id/profilepic" />
+			
+			<TextView
+				android:id="@+id/email"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="mail@gmail.com"
+				android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+				app:layout_constraintEnd_toEndOf="@+id/fullname"
+				app:layout_constraintHorizontal_bias="0"
+				app:layout_constraintStart_toStartOf="@+id/fullname"
+				app:layout_constraintTop_toBottomOf="@+id/fullname" />
+		</androidx.constraintlayout.widget.ConstraintLayout>
+		
+		<View
+			android:id="@+id/view"
+			android:layout_width="match_parent"
+			android:layout_height="1dp"
+			android:background="@color/Tertiary"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/titlecontainer"
+			app:layout_constraintVertical_bias="0.15" />
+		
+		<ImageView
+			android:id="@+id/imageView2"
+			android:layout_width="24dp"
+			android:layout_height="24dp"
+			android:contentDescription="User Type"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHorizontal_bias="0.06"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/view"
+			app:srcCompat="@drawable/baseline_account_box_24" />
+		
+		<TextView
+			android:id="@+id/userType"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Admin"
+			android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+			app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHorizontal_bias="0.01"
+			app:layout_constraintStart_toEndOf="@+id/imageView2"
+			app:layout_constraintTop_toTopOf="@+id/imageView2" />
+		
+		<TextView
+			android:id="@+id/userWorkshop"
+			android:layout_width="wrap_content"
+			android:minWidth="85dp"
+			android:layout_height="wrap_content"
+			android:text="Appsplash"
+			android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHorizontal_bias="0.94"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/view" />
+		
+		<ImageView
+			android:id="@+id/imageView5"
+			android:layout_width="24dp"
+			android:layout_height="24dp"
+			android:contentDescription="User Workshop"
+			app:layout_constraintBottom_toBottomOf="@+id/userWorkshop"
+			app:layout_constraintEnd_toStartOf="@+id/userWorkshop"
+			app:layout_constraintHorizontal_bias="0.99"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="@+id/userWorkshop"
+			app:srcCompat="@drawable/outline_people_alt_24" />
+	
+	</androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

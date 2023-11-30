@@ -1,7 +1,6 @@
-package com.example.scciapp;
+package com.example.scciapp.Models;
 
-import androidx.annotation.NonNull;
-
+import java.util.ArrayList;
 import java.util.Map;
 
 public class User {
@@ -32,6 +31,14 @@ public class User {
 		this.userEmail = (String) userMap.get("userEmail");
 		this.userType = (String) userMap.get("userType");
 		this.userWorkshop = (String) userMap.get("userWorkshop");
+	}
+	
+	public static ArrayList<User> getUsersList(ArrayList<Map<String, Object>> array){
+		ArrayList<User> users = new ArrayList<>();
+		for (int i = 0; i < array.size(); i++){
+			users.add(new User(array.get(i)));
+		}
+		return users;
 	}
 	
 	public void setUserID(Long userID) {

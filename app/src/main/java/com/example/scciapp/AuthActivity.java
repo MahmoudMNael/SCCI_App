@@ -2,44 +2,36 @@ package com.example.scciapp;
 
 
 import androidx.annotation.NonNull;
-import androidx.annotation.UiThread;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInstaller;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
-import android.widget.Toolbar;
 
-import com.google.android.material.appbar.MaterialToolbar;
+import com.example.scciapp.Admin.AdminHomeActivity;
+import com.example.scciapp.HR.HRHomeActivity;
+import com.example.scciapp.Models.User;
 import com.owlike.genson.Genson;
 import com.owlike.genson.GensonBuilder;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.Headers;
 import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
-public class AuthScreen extends AppCompatActivity {
+public class AuthActivity extends AppCompatActivity {
 	
 	private EditText enteredEmail, enteredPassword;
 	private ProgressBar progressCircular;
@@ -66,7 +58,7 @@ public class AuthScreen extends AppCompatActivity {
 			public void onClick(View v) {
 				
 				Genson genson = new GensonBuilder().create();
-				String url = "http://10.0.2.2:5000/api/auth/login";
+				String url = HttpClient.baseUrl + "/auth/login";
 				Map<String, String> userCredentials = new HashMap<String, String>(){{
 					put("username", enteredEmail.getText().toString());
 					put("password", enteredPassword.getText().toString());
@@ -77,11 +69,11 @@ public class AuthScreen extends AppCompatActivity {
 				
 				loginBtn.setVisibility(View.GONE);
 				progressCircular.setVisibility(View.VISIBLE);
-				HttpClient.client.newCall(request).enqueue(new Callback() {
+				HttpClient.getClient().newCall(request).enqueue(new Callback() {
 					@Override
 					public void onFailure(@NonNull Call call, @NonNull IOException e) {
 						e.printStackTrace();
-						AuthScreen.this.runOnUiThread(new Runnable() {
+						AuthActivity.this.runOnUiThread(new Runnable() {
 							@Override
 							public void run() {
 								loginBtn.setVisibility(View.VISIBLE);
@@ -104,12 +96,19 @@ public class AuthScreen extends AppCompatActivity {
 							Session.cookieString = response.header("Set-Cookie");
 							editor.putString("cookie", Session.cookieString);
 							editor.apply();
+							Intent intent;
+							if (Session.currentUser.getUserType().equals("Admin")){
+								intent = new Intent(AuthActivity.this, AdminHomeActivity.class);
+							} else if (Session.currentUser.getUserType().equals("HR")){
+								intent = new Intent(AuthActivity.this, HRHomeActivity.class);
+							} else {
+								intent = new Intent(AuthActivity.this, HomeActivity.class);
+							}
 							
-							Intent intent = new Intent(AuthScreen.this, HomeScreen.class);
 							startActivity(intent);
-							AuthScreen.this.finish();
+							AuthActivity.this.finish();
 						} else {
-							AuthScreen.this.runOnUiThread(new Runnable() {
+							AuthActivity.this.runOnUiThread(new Runnable() {
 								@Override
 								public void run() {
 									loginBtn.setVisibility(View.VISIBLE);
