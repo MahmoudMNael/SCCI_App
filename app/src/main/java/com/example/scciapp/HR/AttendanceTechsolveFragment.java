@@ -120,7 +120,7 @@ public class AttendanceTechsolveFragment extends Fragment {
 							HRWeeklySessionsRecViewAdapter adapter = new HRWeeklySessionsRecViewAdapter(view.getContext());
 							adapter.setSessions(sessions);
 							accountsRecView.setAdapter(adapter);
-							accountsRecView.setLayoutManager(new LinearLayoutManager(view.getContext(), RecyclerView.VERTICAL, true));
+							accountsRecView.setLayoutManager(new LinearLayoutManager(view.getContext(), RecyclerView.VERTICAL, false));
 						}
 					});
 					
