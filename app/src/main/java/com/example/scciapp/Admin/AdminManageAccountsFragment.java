@@ -137,7 +137,7 @@ public class AdminManageAccountsFragment extends Fragment {
 					// There are no request codes
 					Intent data = result.getData();
 					fileUri = data.getData();
-					String url = "http://10.0.2.2:5000/api/admin/account/create";
+					String url = HttpClient.baseUrl + "/admin/account/create";
 					
 					try {
 						String json = readTextFromUri(fileUri);

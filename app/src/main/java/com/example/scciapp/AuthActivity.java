@@ -86,7 +86,6 @@ public class AuthActivity extends AppCompatActivity {
 					@Override
 					public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
 						ResponseBody responseBody = response.body();
-						
 						if (response.isSuccessful() && responseBody != null) {
 							Map<String, Object> decodedResponse = genson.deserialize(responseBody.string(), Map.class);
 							User user = new User((Map<String, Object>) decodedResponse.get("data"));

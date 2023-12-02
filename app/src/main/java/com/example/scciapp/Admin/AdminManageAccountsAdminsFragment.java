@@ -92,7 +92,7 @@ public class AdminManageAccountsAdminsFragment extends Fragment {
 	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		Genson genson = new GensonBuilder().create();
-		String url = "http://10.0.2.2:5000/api/admin/accounts/Admin";
+		String url = HttpClient.baseUrl + "/admin/accounts/Admin";
 		Request request = new Request.Builder().get().url(url).build();
 		ProgressBar progressCircular = (ProgressBar) view.findViewById(R.id.loading);
 		TextView errTxt = (TextView) view.findViewById(R.id.errtxt);
