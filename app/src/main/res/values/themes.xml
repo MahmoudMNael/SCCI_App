@@ -5,8 +5,8 @@
 		<item name="colorPrimary">@color/Primary</item>
 		<item name="colorSecondary">@color/Secondary</item>
 		<item name="colorTertiary">@color/Tertiary</item>
-<!--		<item name="android:windowTranslucentStatus">true</item>-->
-		<item name="android:statusBarColor">#00FFFFFF</item>
+		<item name="android:statusBarColor">#00000000</item>
+		<item name="android:windowLightStatusBar">true</item>
 	</style>
 	
 	<style name="AuthCard.SCCIApp" parent="@style/Widget.Material3.CardView.Elevated">
