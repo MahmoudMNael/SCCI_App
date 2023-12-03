@@ -135,11 +135,13 @@ public class AuthActivity extends AppCompatActivity {
 					@Override
 					public void onFailure(@NonNull Call call, @NonNull IOException e) {
 						e.printStackTrace();
+						
 						AuthActivity.this.runOnUiThread(new Runnable() {
 							@Override
 							public void run() {
 								loginBtn.setVisibility(View.VISIBLE);
 								progressCircular.setVisibility(View.GONE);
+								Toast.makeText(AuthActivity.this, "Something went wrong!\nTry again later!", Toast.LENGTH_SHORT).show();
 							}
 						});
 						
@@ -174,6 +176,7 @@ public class AuthActivity extends AppCompatActivity {
 								public void run() {
 									loginBtn.setVisibility(View.VISIBLE);
 									progressCircular.setVisibility(View.GONE);
+									Toast.makeText(AuthActivity.this, "Wrong Email or Password!", Toast.LENGTH_SHORT).show();
 								}
 							});
 						}
