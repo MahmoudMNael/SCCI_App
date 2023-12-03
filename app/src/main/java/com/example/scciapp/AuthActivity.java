@@ -6,22 +6,27 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.scciapp.Admin.AdminHomeActivity;
 import com.example.scciapp.HR.HRHomeActivity;
 import com.example.scciapp.Models.User;
+import com.google.android.material.textfield.TextInputLayout;
 import com.owlike.genson.Genson;
 import com.owlike.genson.GensonBuilder;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -37,8 +42,6 @@ public class AuthActivity extends AppCompatActivity {
 	private ProgressBar progressCircular;
 	private Button loginBtn;
 	
-	
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -53,9 +56,68 @@ public class AuthActivity extends AppCompatActivity {
 		progressCircular = (ProgressBar) findViewById(R.id.progresscircular);
 		
 		
+		TextInputLayout emailLayout = (TextInputLayout) findViewById(R.id.emailtextlayout);
+		TextInputLayout passLayout = (TextInputLayout) findViewById(R.id.passwordtextlayout);
+		enteredEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				if(hasFocus){
+					emailLayout.setStartIconTintList(ColorStateList.valueOf(getColor(R.color.Primary)));
+				} else {
+					String regexPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+						+ "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+					if(enteredEmail.getText().toString().trim().isEmpty() || !Pattern.compile(regexPattern).matcher(enteredEmail.getText().toString().trim()).matches()){
+						emailLayout.setError("Email not Valid!");
+					} else {
+						emailLayout.setErrorEnabled(false);
+						emailLayout.setStartIconTintList(ColorStateList.valueOf(Color.DKGRAY));
+					}
+				}
+			}
+		});
+		
+		
+		enteredPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				if(hasFocus){
+					passLayout.setStartIconTintList(ColorStateList.valueOf(getColor(R.color.Primary)));
+				} else {
+					if(enteredPassword.getText().toString().trim().isEmpty()){
+						passLayout.setError("Password not Valid!");
+					} else {
+						passLayout.setErrorEnabled(false);
+						passLayout.setStartIconTintList(ColorStateList.valueOf(Color.DKGRAY));
+					}
+				}
+			}
+		});
+		
 		loginBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				outer:
+				if(emailLayout.isErrorEnabled() || passLayout.isErrorEnabled() || enteredEmail.getText().toString().trim().length() == 0 || enteredPassword.getText().toString().trim().length() == 0){
+					if (enteredEmail.getText().toString().trim().isEmpty()){
+						emailLayout.setError("Email not Valid!");
+						emailLayout.setStartIconTintList(ColorStateList.valueOf(getColor(R.color.Primary)));
+					}
+					if (enteredPassword.getText().toString().trim().isEmpty()){
+						passLayout.setError("Password not Valid!");
+						passLayout.setStartIconTintList(ColorStateList.valueOf(getColor(R.color.Primary)));
+					}
+					String regexPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+						+ "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+					
+					if(!enteredEmail.getText().toString().trim().isEmpty() && Pattern.compile(regexPattern).matcher(enteredEmail.getText().toString().trim()).matches() && !enteredPassword.getText().toString().trim().isEmpty()){
+						emailLayout.setErrorEnabled(false);
+						passLayout.setErrorEnabled(false);
+						break outer;
+					}
+					
+					Toast.makeText(AuthActivity.this, "Input not Valid!", Toast.LENGTH_SHORT).show();
+					return;
+				}
 				
 				Genson genson = new GensonBuilder().create();
 				String url = HttpClient.baseUrl + "/auth/login";
